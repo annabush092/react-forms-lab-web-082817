@@ -23,15 +23,16 @@ class PoemWriter extends React.Component {
   }
 
   correctStructure() {
+    const invalidDiv = (<div id="poem-validation-error" style={{color: 'red'}}> This poem is not written in the right structure! </div>)
     let lineArr = this.state.text.split("\n")
     if(lineArr.length !== 3) {
-      return "This poem is not written in the right structure!"
+      return invalidDiv
     }else if(this.countWords(lineArr[0]) !== 5) {
-      return "This poem is not written in the right structure!"
+      return invalidDiv
     }else if(this.countWords(lineArr[1])  !== 3) {
-      return "This poem is not written in the right structure!"
+      return invalidDiv
     }else if(this.countWords(lineArr[2])  !== 5) {
-      return "This poem is not written in the right structure!"
+      return invalidDiv
     }else {
       return null
     }
@@ -46,12 +47,7 @@ class PoemWriter extends React.Component {
           onChange={this.handleTextChange.bind(this)}
           value={this.state.text}
         />
-        <div
-          id="poem-validation-error"
-          style={{color: 'red'}}
-        >
-          {this.correctStructure()}
-        </div>
+        {this.correctStructure()}
       </div>
     );
   }

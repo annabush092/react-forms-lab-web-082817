@@ -10,8 +10,9 @@ class TwitterMessage extends React.Component {
   }
 
   handleOnChange(ev) {
+    let inputText = ev.target.value
     this.setState({
-      text: ev.target.value,
+      text: inputText,
       availableChars: (this.props.maxChars - ev.target.value.length)
     })
   }
@@ -20,7 +21,7 @@ class TwitterMessage extends React.Component {
     return (
       <div>
         <strong>Your message:</strong>
-        <input type="text" onChange={this.handleOnChange.bind(this)}/>
+        <input type="text" onChange={this.handleOnChange.bind(this)} value={this.state.text}/>
         <div>Number of characters left available: {this.state.availableChars}</div>
       </div>
     );
